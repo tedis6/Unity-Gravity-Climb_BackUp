@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager1 : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameManager1 : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public GameObject gameOverText;
     public GameObject restartButton;
+    public Button restartBtn;
+    private Rigidbody playerRb;
     public bool gameOver = false;
     public bool isFinished = false;
     // Start is called before the first frame update
@@ -19,13 +22,16 @@ public class GameManager1 : MonoBehaviour
         fuelBar = FindObjectOfType<Fuelbar>();
         score = 0;
         scoreText.text = "Score:" + score;
-
+        playerRb = GetComponent<Rigidbody>();
+        restartBtn.onClick.AddListener(Restart);
     }
 
     // Update is called once per frame
     void Update()
     {
         GameOver();
+   
+
 
     }
 
@@ -60,9 +66,9 @@ public class GameManager1 : MonoBehaviour
 
     }
 
-    void UpdateScore(int additionalScore)
+    void UpdateScore(int aditionalScore)
     {
-        score += additionalScore;
+        score += aditionalScore;
         scoreText.text = "Score: " + score;
 
     }
@@ -73,12 +79,23 @@ public class GameManager1 : MonoBehaviour
         {
             gameOverText.SetActive(true);
             restartButton.SetActive(true);
+            playerRb.constraints = RigidbodyConstraints.FreezeAll;
+
+
         }
 
     }
 
     public void Restart()
     {
+        fuelBar.Refill();
+        playerRb.constraints = RigidbodyConstraints.None;
+        playerRb.velocity = Vector3.zero;
+        isFinished = false;
+        gameOver = false;
+        gameOverText.SetActive(false);
+        restartButton.SetActive(false);
+        transform.position = new Vector3(50f, 4f, 0.7f);
 
     }
 }

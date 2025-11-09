@@ -9,12 +9,11 @@ public class Fuelbar : MonoBehaviour
     Slider slider;
     public float fuelTime = 10.0f;
     float timer = 0f;
-    GameManager1 gameManager;
+    public GameManager1 gameManager;
     // Start is called before the first frame update
     void Start()
     {
         slider = GetComponent<Slider>();
-        gameManager = GetComponent<GameManager1>();
         slider.value = 1.0f;
     }
 
@@ -24,7 +23,7 @@ public class Fuelbar : MonoBehaviour
         timer += Time.deltaTime;
         slider.value = Mathf.Lerp(1f, 0f, timer / fuelTime);
         
-        if (slider.value <= 0f && !gameManager.gameOver)
+        if (slider.value <= 0f && gameManager.gameOver==false)
         {
             gameManager.gameOver = true;
         }

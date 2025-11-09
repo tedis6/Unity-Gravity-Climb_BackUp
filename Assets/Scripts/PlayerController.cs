@@ -44,7 +44,7 @@ public class NewBehaviourScript : MonoBehaviour
         rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
         rearRightWheelCollider.motorTorque = verticalInput * motorForce;
 
-        currentBreakForce = isBreaking? currentBreakForce : 0f;
+        currentBreakForce = isBreaking? brakeForce : 0f;
         ApplyBreaking();
     }
     private void ApplyBreaking()
@@ -70,4 +70,13 @@ public class NewBehaviourScript : MonoBehaviour
         UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
 
     } 
+
+    public void StopWheels()
+    {
+        frontLeftWheelCollider.motorTorque = 0f;
+        frontRightWheelCollider.motorTorque = 0f;
+        rearLeftWheelCollider.motorTorque = 0f;
+        rearRightWheelCollider.motorTorque = 0f;
+
+    }
 }
