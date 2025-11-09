@@ -7,7 +7,6 @@ public class NewBehaviourScript : MonoBehaviour
     public float motorForce = 100f;
     public float brakeForce = 1000f;
 
-
     public WheelCollider frontLeftWheelCollider;
     public WheelCollider frontRightWheelCollider;
     public WheelCollider rearLeftWheelCollider;

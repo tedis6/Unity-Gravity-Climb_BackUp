@@ -15,7 +15,6 @@ public class GameManager1 : MonoBehaviour
     public GameObject gameOverText;
     public GameObject restartButton;
     public Button restartBtn;
-    public float jumpForce = 10000f;
     private Rigidbody playerRb;
     public bool gameOver = false;
     public bool isFinished = false;
@@ -37,16 +36,8 @@ public class GameManager1 : MonoBehaviour
     void Update()
     {
         GameStatus();
+   
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-
-        if (transform.up.y < -0.7f)
-        {
-            gameOver = true;
-        }
 
     }
 
