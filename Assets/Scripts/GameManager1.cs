@@ -18,10 +18,6 @@ public class GameManager1 : MonoBehaviour
     private Rigidbody playerRb;
     public bool gameOver = false;
     public bool isFinished = false;
-    public AudioSource audioSource;
-    public AudioClip coinSound;
-    public AudioClip canisterSound;
-    public AudioClip gameoverSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,17 +41,14 @@ public class GameManager1 : MonoBehaviour
     {
         if (other.CompareTag("Powerup"))
         {
-            audioSource.PlayOneShot(canisterSound, 2f);
             fuelBar.Refill();
             Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Coin"))
         {
-            audioSource.PlayOneShot(coinSound, 2f);
             UpdateScore(5);
             Destroy(other.gameObject);
-            
         }
 
         if (other.CompareTag("Stop"))
@@ -68,7 +61,6 @@ public class GameManager1 : MonoBehaviour
         {
             gameOver = true;
             Destroy(other.gameObject);
-            audioSource.PlayOneShot(gameoverSound, 2f);
 
         }
 
