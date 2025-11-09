@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager1 : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager1 : MonoBehaviour
     Fuelbar fuelBar;
     private int score;
     public TextMeshProUGUI scoreText;
+    public GameObject winText;
     public GameObject gameOverText;
     public GameObject restartButton;
     public Button restartBtn;
@@ -29,7 +31,7 @@ public class GameManager1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameOver();
+        GameStatus();
    
 
 
@@ -51,7 +53,6 @@ public class GameManager1 : MonoBehaviour
 
         if (other.CompareTag("Stop"))
         {
-            //fuelBar.GameOver();
             Destroy(other.gameObject);
             isFinished = true;
         }
@@ -73,7 +74,7 @@ public class GameManager1 : MonoBehaviour
 
     }
 
-    public void GameOver()
+    public void GameStatus()
     {
         if (gameOver)
         {
@@ -84,18 +85,19 @@ public class GameManager1 : MonoBehaviour
 
         }
 
+        if (isFinished)
+        {
+            restartButton.SetActive(true);
+            winText.SetActive(true);
+            playerRb.constraints = RigidbodyConstraints.FreezeAll;
+
+        }
+
     }
+
 
     public void Restart()
     {
-        fuelBar.Refill();
-        playerRb.constraints = RigidbodyConstraints.None;
-        playerRb.velocity = Vector3.zero;
-        isFinished = false;
-        gameOver = false;
-        gameOverText.SetActive(false);
-        restartButton.SetActive(false);
-        transform.position = new Vector3(50f, 4f, 0.7f);
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
