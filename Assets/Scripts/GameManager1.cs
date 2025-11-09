@@ -9,6 +9,8 @@ public class GameManager1 : MonoBehaviour
     Fuelbar fuelBar;
     private int score;
     public TextMeshProUGUI scoreText;
+    public GameObject gameOverText;
+    public GameObject restartButton;
     public bool gameOver = false;
     public bool isFinished = false;
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class GameManager1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameOver();
 
     }
 
@@ -65,6 +68,16 @@ public class GameManager1 : MonoBehaviour
     }
 
     public void GameOver()
+    {
+        if (gameOver)
+        {
+            gameOverText.SetActive(true);
+            restartButton.SetActive(true);
+        }
+
+    }
+
+    public void Restart()
     {
 
     }
