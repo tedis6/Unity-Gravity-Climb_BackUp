@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ceiling
+  - Powerup
+  - Coin
+  - Stop
+  - Deathzone
   layers:
   - Default
   - TransparentFX

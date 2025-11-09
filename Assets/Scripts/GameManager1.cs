@@ -47,6 +47,13 @@ public class GameManager1 : MonoBehaviour
             isFinished = true;
         }
 
+        if (other.CompareTag("Deathzone"))
+        {
+            gameOver = true;
+            Destroy(other.gameObject);
+
+        }
+
 
     }
 
@@ -54,6 +61,11 @@ public class GameManager1 : MonoBehaviour
     {
         score += additionalScore;
         scoreText.text = "Score: " + score;
+
+    }
+
+    public void GameOver()
+    {
 
     }
 }
